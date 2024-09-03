@@ -16,10 +16,11 @@ const MyPropsComponent: React.FC<MyPropType> = (props): JSX.Element => {
 }
 
 // Q) UserProfile 컴포넌트고 name, age, address를 props로 받아서 출력
+// ?(optional) : 속성 값을 써도 되고 안 써도 됨
 interface UserProfileProps {
     name: String,
     age: number,
-    address: String
+    address?: String
 }
 
 const MyUserProfile: React.FC<UserProfileProps> = (props): JSX.Element => {
@@ -35,4 +36,5 @@ root.render(<div>
     <MyPropsComponent a={100} b="world" />
     <MyPropsComponent a={100} b="hello" />
     <MyUserProfile name="doyeon" age={19} address="Seoul" />
+    <MyUserProfile name="doyeon" age={19} />
 </div>)
