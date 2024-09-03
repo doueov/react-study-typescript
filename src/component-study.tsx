@@ -31,6 +31,30 @@ const MyUserProfile: React.FC<UserProfileProps> = (props): JSX.Element => {
     </div>
 }
 
+const MyUserProfileDate: any = {
+    name: 30, age: "John"
+}
+
+const MyUserProfileData2: UserProfileProps = {
+    name: "John", age: 30
+}
+
+// Q)
+interface ProductData {
+    id: string;
+    manufacturer: string;
+}
+
+interface ProductInfoProps {
+    num: number;
+    product: ProductData;
+}
+
+const ProductInfo: ProductInfoProps = {
+    num: 1,
+    product: { id: "A1234", manufacturer: "Samsung" }
+}
+
 root.render(<div>
     <MyComponent />
     <MyPropsComponent a={100} b="world" />
