@@ -55,10 +55,26 @@ const ProductInfo: ProductInfoProps = {
     product: { id: "A1234", manufacturer: "Samsung" }
 }
 
+interface CalcProp {
+    clacFn: (op1: number, op2: number) => number;    // 함수형 타입
+    fn?: () => void;
+}
+
+// Q) Calculator 컴포넌트를 정의하고, CalcProp을 전달 받도록 코드 작성
+function Calculator({ clacFn, fn }: CalcProp) {
+    return <div>
+        {clacFn(2, 4)}
+        <button onClick={fn}>Click</button>
+    </div>
+}
+
 root.render(<div>
     <MyComponent />
     <MyPropsComponent a={100} b="world" />
     <MyPropsComponent a={100} b="hello" />
     <MyUserProfile name="doyeon" age={19} address="Seoul" />
     <MyUserProfile name="doyeon" age={19} />
+    <Calculator clacFn={(a, b) => a+b} />
+    <Calculator clacFn={(a, b) => a*b} fn={() => console.log("Hello")}/>
+
 </div>)
