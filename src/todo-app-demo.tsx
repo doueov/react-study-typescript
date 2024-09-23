@@ -7,9 +7,26 @@ interface Todo {
     completed: boolean;
 }
 
+type TodoListProps = {
+    todos: Todo[]
+}
+
+// TodoList 컴포넌트 정의하고 TodoApp에서 보여주기
+function TodoList({ todos }: TodoListProps) {
+    return <ul>
+        {
+            todos.map(todo => <TodoItem todo={todo}/>)
+        }
+    </ul>
+}
+
 function TodoApp() {
-    const [todos, setTodos] = useState<Todo[]>([]);
-    return <div></div>
+    const [todos, setTodos] = useState<Todo[]>([
+        { completed: false, text: "타입스크립트 공부하기" }
+    ]);
+    return <div>
+        <TodoList todos={todos} />
+    </div>
 }
 
 root.render(<TodoApp />)
