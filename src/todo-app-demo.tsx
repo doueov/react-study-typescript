@@ -7,15 +7,23 @@ interface Todo {
     completed: boolean;
 }
 
+type TodoItemProps = {
+    todo: Todo;
+}
+
 type TodoListProps = {
     todos: Todo[]
+}
+
+function TodoItem({ todo }: TodoItemProps) {
+
 }
 
 // TodoList 컴포넌트 정의하고 TodoApp에서 보여주기
 function TodoList({ todos }: TodoListProps) {
     return <ul>
         {
-            todos.map(todo => <TodoItem todo={todo}/>)
+            todos.map(todo => <TodoItem todo={todo} />)
         }
     </ul>
 }
