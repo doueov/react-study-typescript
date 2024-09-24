@@ -12,7 +12,8 @@ type TodoItemProps = {
 }
 
 type TodoListProps = {
-    todos: Todo[]
+    todos: Todo[];
+    handgleTodoRemove: (todoAdder: number) => void;
 }
 
 function TodoItem({ todo }: TodoItemProps) {
@@ -28,11 +29,35 @@ function TodoList({ todos }: TodoListProps) {
     </ul>
 }
 
+type TodoAdderProps = {
+    handleTodoAdd: (newTodo: Todo) => void;
+}
+
+function TodoAdder({ handleTodoAdd }: TodoAdderProps) {
+    const [input, setInput] = useState("")
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)
+    const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        handleTodoAdd({ completed: false, text: input })
+        setInput("")
+    }
+
+
+    return <div>
+        <input type='text' onChange={handleChange} value={input} />
+        <button onClick={handleOnClick}>추가</button>
+    </div>
+}
+
 function TodoApp() {
     const [todos, setTodos] = useState<Todo[]>([
         { completed: false, text: "타입스크립트 공부하기" }
     ]);
+
+    const handleTodoAdd = (newTodo: Todo) => setTodos(todos => todos.concat(newTodo))
+    const handleTodoRemove = 
+
     return <div>
+        <TodoAdder handleTodoAdd={handleTodoAdd} />
         <TodoList todos={todos} />
     </div>
 }
